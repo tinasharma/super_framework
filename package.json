@@ -1,0 +1,26 @@
+{
+  "name": "super_framework",
+  "version": "1.0.0",
+  "description": "A remarkably super framework.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akeogh/super_framework.git"
+  },
+  "author": "Amanda Keogh, Iryna Bondarenko, Tina Sharma",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/akeogh/super_framework/issues"
+  },
+  "homepage": "https://github.com/akeogh/super_framework#readme",
+  "devDependencies": {
+    "chai": "^3.4.0",
+    "chai-http": "^1.0.0",
+    "gulp": "^3.9.0",
+    "jshint": "^2.8.0",
+    "mocha": "^2.3.3"
+  }
+}
