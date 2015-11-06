@@ -16,9 +16,8 @@ blockquote p {
 }
 
 blockquote::before {
-  font-size: 2em;
-  content: '"';
-}
+  font-size: 1em;
+  
 
 h1,
 h2,
