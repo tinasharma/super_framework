@@ -1,0 +1,25 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+  line-height: 1.5;
+  padding: 1em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Roboto Slab', serif;
+}
+
+a,
+a:link {
+  color: #3E606F;
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  color: #91AA9D;
+}
