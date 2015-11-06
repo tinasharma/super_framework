@@ -13,6 +13,8 @@ To Do!
   * Parse request
   * Server counter
 * Write more tests
+* Travis-yml
+* NPM publish
 
 function send(data, callback) {
   res.writeHead(...);
