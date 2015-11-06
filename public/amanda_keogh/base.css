@@ -1,0 +1,30 @@
+body {
+  font-family: 'Raleway', sans-serif;
+  line-height: 1.5em;
+}
+
+blockquote {
+  font-family: 'IM Fell DW Pica SC', serif;
+  font-size: 1.5em;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Nova Flat', cursive;
+}
+
+h1 {
+  font-size: 5.063em;
+}
+
+h2 {
+  font-size: 3.375em;
+}
+
+h3 {
+  font-size:2.25em;
+}
+
+
+/*font-family: 'Nova Flat', cursive;*/
