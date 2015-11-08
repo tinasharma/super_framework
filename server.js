@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 var http = require('http');
 var Router = require(__dirname + '/lib/router.js');
@@ -14,7 +14,11 @@ router.get('/test', function(req, res){
 
 router.get('/', function(req, res) {
   router.routes['GET']['/public/index.html'](req, res);
-})
+});
+
+router.get('/stat', function(req, res) {
+  router.stat(req, res);
+});
 
 writeDirectory(router, '/public', 'GET');
 
