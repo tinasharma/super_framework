@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 var http = require('http');
 var Router = require(__dirname + '/lib/router.js');
