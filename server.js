@@ -21,7 +21,7 @@ router.get('/', function(req, res) {
 
 router.get('/stat', function(req, res) {
   router.stat(req, res);
-})
+});
 
 var server = http.createServer(function(req, res) {
   router.route(req, res);
