@@ -4,7 +4,6 @@ var chaihttp = require('chai-http');
 chai.use(chaihttp);
 var Router = require(__dirname + '/../lib/router');
 
-
 describe('URLS counter', function(){
 	it('should  get statistics for routes', function(done){
 	   chai.request('localhost:3000')
