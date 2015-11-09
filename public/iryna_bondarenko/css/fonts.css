@@ -4,7 +4,10 @@
   src:url('../fonts/icomoon.eot?mawijh#iefix') format('embedded-opentype'),
     url('../fonts/icomoon.ttf?mawijh') format('truetype'),
     url('../fonts/icomoon.woff?mawijh') format('woff'),
+      url('../fonts/icomoon.svg#linkedin') format('svg'),
     url('../fonts/icomoon.svg?mawijh#icomoon') format('svg');
+
+
   font-weight: normal;
   font-style: normal;
 }
@@ -26,10 +29,10 @@
 .icon-facebook2:before {
   content: "\ea8d";
 }
-.icon-twitter:before {
-  content: "\ea91";
-}
 .icon-github:before {
   content: "\eab1";
 }
 
+.linkedin:before {
+  content: "\eab1";
+}
