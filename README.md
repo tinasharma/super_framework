@@ -21,6 +21,29 @@ Table of Contents
 
 # sendFile(filename, res)
 
+  The send file function is used for sending back a file, the header, and the response.
+
+  How to use it:
+
+  1. Require fs(filesystem) and save it in the var fs.
+
+  2. Create a function sendfile, that takes in two parameters, filename and res
+  eg : `function sendFile(filename, res) {}`
+  This file will be called from the writeDirectory.js
+
+  3. In the function you write/send the following to the response(res) object-
+
+  header data -
+  eg. `res.writeHead(200, {'Content-Type': 'text/html'});`
+
+  contents of the file, after reading it -
+  eg. `res.write(fs.readFileSync(filename));`
+
+  and finally ending the response -
+  eg. `res.end();`
+
+  4. Finally export the file by adding the function to module.exports -
+  eg. `module.exports = exports = function sendFile() {}`
 
 
 # writeDirectory(router, filepath, method)
