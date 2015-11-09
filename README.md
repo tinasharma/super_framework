@@ -1,4 +1,5 @@
 # super_framework
+[![Build Status](https://travis-ci.org/akeogh/super_framework.svg)](https://travis-ci.org/akeogh/super_framework)
 
 A simple HTTP server framework, including basic router, response methods, a directory
 reader, and a request counter.
