@@ -1,16 +1,27 @@
 # super_framework
 [![Build Status](https://travis-ci.org/akeogh/super_framework.svg)](https://travis-ci.org/akeogh/super_framework)
 
-A simple HTTP server framework, including basic router, response methods, a directory
+A simple HTTP server framework, including basic router with response methods, a directory
 reader, and a request counter.
 
 Table of Contents
 =================
 
-* respond(res, data)
-* sendFile(filename, res)
-* writeDirectory(router, filepath, method)
-* Request Counter
+* `Router` constructor
+* `respond(res, data)`
+* `sendFile(filename, res)`
+* `writeDirectory(filepath, method)`
+* Request `Counter`
+* Example Implementation
+
+# Router
+
+  A basic REST request router. To implement, require in super_framework as a new
+  router constructor.
+
+  ```var Router = require('super_framework');
+
+  var router = new Router();```
 
 # respond(res, data)
 
@@ -18,7 +29,7 @@ Table of Contents
 
   Example:
 
-  `respond(res, 'hello world!');    // writes 'hello world!' to response object.`
+  `Router.respond(res, 'hello world!');    // writes 'hello world!' to response object.`
 
 # sendFile(filename, res)
 
@@ -26,40 +37,23 @@ Table of Contents
 
   How to use it:
 
-  1. Require fs(filesystem) and save it in the var fs.
+  `router.sendFile(filepath, res);`
 
-  2. Create a function sendfile, that takes in two parameters, filename and res
-  eg : `function sendFile(filename, res) {}`
-  This file will be called from the writeDirectory.js
-
-  3. In the function you write/send the following to the response(res) object-
-
-  header data -
-  eg. `res.writeHead(200, {'Content-Type': 'text/html'});`
-
-  contents of the file, after reading it -
-  eg. `res.write(fs.readFileSync(filename));`
-
-  and finally ending the response -
-  eg. `res.end();`
-
-  4. Finally export the file by adding the function to module.exports -
-  eg. `module.exports = exports = function sendFile() {}`
-
+  NOTE: filepath MUST include root directory (see example below);
 
 # writeDirectory(router, filepath, method)
 
   Reads all files in a directory and assigns a response to them.
 
-  The writeDirectory function takes three arguments: the router to which it will be
-  writing, the filepath of the directory to read, and the REST method to call on it.
-  writeDirectory will register all files as properties of the appropriate method,
-  and assign the appropriate response function. At this time writeDirectory only
-  assigns responses to GET requests.
+  The writeDirectory function takes two arguments: the filepath of the directory
+  to read, and the REST method to call on it. writeDirectory will register all
+  files as properties of the appropriate method, and assign the appropriate
+  response function. At this time writeDirectory only assigns responses to GET
+  requests. NOTE: Filepath MUST include root directory (see example below)
 
   Example:
 
-  `writeDirectory(router, '/public', 'GET');    // returns all files in directory on request`
+  `Router.writeDirectory('/directory', 'GET');    // returns all files in directory on request`
 
 # Request Counter
 
@@ -89,3 +83,38 @@ Table of Contents
   'stat' is built-in method of Router object. It needs to be used in order to
   receive statistic information. In this example 'count' request will give
   statistics for user's requests.
+
+------------------------------------------
+
+# Example Implementation
+
+```'use strict';
+
+var http = require('http');
+var Router = require(__dirname + '/../index.js');
+
+var router = new Router();
+
+router.writeDirectory('/test/testDirectory', 'GET');
+
+router.get('/', function(req, res) {
+  router.routes['GET']['/test/testDirectory/test2/home.html'](req, res);
+});
+
+router.get('/test', function(req, res){
+  router.respond(res, 'hello, world!');
+});
+
+router.get('/test2', function(req, res) {
+  router.sendFile('test/testDirectory/boo.html', res);
+});
+
+router.get('/stat', function(req, res) {
+  router.stat(req, res);
+});
+
+var server = http.createServer(function(req, res) {
+  router.route(req, res);
+}).listen(3000, function() {
+  console.log('server listening on port 3000');
+});```

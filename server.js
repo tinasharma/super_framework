@@ -1,22 +1,14 @@
 'use strict';
 
 var http = require('http');
-var Router = require(__dirname + '/lib/router.js');
-var writeDirectory = require(__dirname + '/lib/writeDirectory.js');
-var sendFile = require(__dirname + '/lib/sendFile.js');
-var respond = require(__dirname + '/lib/respond.js');
-
+var Router = require(__dirname + '/index.js');
 
 var router = new Router();
 
-writeDirectory(router, '/public', 'GET');
-
-router.get('/test', function(req, res){
-  respond(res, 'Test worked!');
-});
+router.writeDirectory('/testDirectory', 'GET');
 
 router.get('/', function(req, res) {
-  router.routes['GET']['/public/index.html'](req, res);
+  router.routes['GET']['/testDirectory/test2/home.html'](req, res);
 });
 
 router.get('/stat', function(req, res) {
