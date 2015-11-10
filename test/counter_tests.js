@@ -3,7 +3,7 @@ var expect = chai.expect;
 var chaihttp = require('chai-http');
 chai.use(chaihttp);
 var Router = require(__dirname + '/../lib/router');
-require(__dirname + '/../server.js');
+require(__dirname + '/../lib/testingServer.js');
 
 describe('URLS counter', function(){
   it('should  get statistics for routes', function(done){
@@ -11,7 +11,7 @@ describe('URLS counter', function(){
     .get('/stat')
     .end(function(err, res){
       expect(err).to.eql(null);
-      expect(res).to.have.status(200); 
+      expect(res).to.have.status(200);
       done();
     });
   });
@@ -20,7 +20,7 @@ describe('URLS counter', function(){
     .get('/stat')
     .end(function(err, res){
       expect(err).to.eql(null);
-      expect(res).to.not.eql(null); 
+      expect(res).to.not.eql(null);
       done();
     });
   });
@@ -31,18 +31,18 @@ describe('URLS counter', function(){
     var router = new Router;
     router.get('/test');
     var counter = router.counts['GET']['/test'];
-    expect(counter).to.be.eql(0);	
+    expect(counter).to.be.eql(0);
 	});
 	it ('object router.count[] should have url and count data', function () {
     var router = new Router;
     router.get('/test');
     var data = router.counts['GET'];
-    expect(data).to.be.eql({'/test': 0});	
+    expect(data).to.be.eql({'/test': 0});
 	});
 	 it ('object router.count[] should have url and count data', function () {
     var router = new Router;
     var data = Object.keys(router.counts);
-    expect(data).to.be.eql(['GET', 'POST', 'PUT', 'PATCH', 'DELETE']);	
+    expect(data).to.be.eql(['GET', 'POST', 'PUT', 'PATCH', 'DELETE']);
 	});
 });
 
@@ -62,7 +62,7 @@ describe ('Counter incrementing', function () {
         writeHead: function (status, headers) {
           status = 200;
           headers = {'Content-Type': 'text/plain'}
-        }, 
+        },
         write: function(text) {
           write = true;
           text = "Result for test url"
@@ -74,8 +74,9 @@ describe ('Counter incrementing', function () {
       router.route(req, res);
       var counternew = router.counts['GET']['/test'];
       expect(counternew-1).to.be.eql(countBefore);
-      done();	
+      done();
     });
   });
-})
- 
+});
+
+
