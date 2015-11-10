@@ -5,7 +5,7 @@ var mocha = require('gulp-mocha');
 var jshint = require('gulp-jshint');
 
 var appFiles = ['index.js', __dirname + '/lib/**/*.js'];
-var testFiles = ['gulpfile.js', __dirname + '/test/**/*.js'];
+var testFiles = ['gulpfile.js', __dirname + '/test/**/*test.js'];
 
 gulp.task('jshint:apps', function() {
   return gulp.src(appFiles)
