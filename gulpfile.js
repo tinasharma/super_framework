@@ -4,8 +4,8 @@ var expect = require('chai').expect;
 var mocha = require('gulp-mocha');
 var jshint = require('gulp-jshint');
 
-var appFiles = ['server.js', __dirname + '/lib/**/*.js'];
-var testFiles = ['gulpfile.js', __dirname + '/lib/**/*.js'];
+var appFiles = ['index.js', __dirname + '/lib/**/*.js'];
+var testFiles = ['gulpfile.js', __dirname + '/test/**/*.js'];
 
 gulp.task('jshint:apps', function() {
   return gulp.src(appFiles)
@@ -32,7 +32,7 @@ gulp.task('jshint:tests', function() {
 gulp.task('jshint', ['jshint:apps', 'jshint:tests']);
 
 gulp.task('mocha', function() {
-  return gulp.src(appFiles)
+  return gulp.src(testFiles)
     .pipe(mocha());
 });
 
@@ -41,4 +41,4 @@ gulp.task('watch', function() {
   gulp.watch(testFiles, ['jshint:tests']);
 });
 
-gulp.task('default', ['watch']);
+gulp.task('default', ['jshint', 'mocha']);
